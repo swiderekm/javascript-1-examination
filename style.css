@@ -1,0 +1,54 @@
+body {
+    margin: 10px;
+    padding: 0px;
+    background-color: ivory;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.red-p {
+    color: green;
+}
+
+.green-p {
+    color: red;
+}
+
+button {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 25px;
+    background-color: chartreuse;
+    border: none;
+    box-shadow: 0 0 5px #000000ad;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+button:hover {
+    background-color:aliceblue;
+    box-shadow: 0 0 8px black;
+    transition: 0.3s;
+}
+
+#question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.checkbox-design {
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    margin-right: 15px;
+}
