@@ -105,7 +105,17 @@ let wrongAnswers = [];
 
 function printScore() {
     const total = points.reduce((sum, value) => sum + value, 0);
-    scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length}`;
+    
+    if (total < (askedQuestions.length * 0.5)) {
+        scoreOutput.style.color = 'red';
+        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} failed!`
+    } else if (total > (askedQuestions.length * 0.5) && total < (askedQuestions.length * 0.75)) {
+        scoreOutput.style.color = 'orange';
+        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} it is alright dawg`
+    } else if (total > (askedQuestions.length * 0.75)) {
+        scoreOutput.style.color = 'green';
+        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} Really well done!!!`
+    };
 }
 
 function answerChecker(answer, question) {
@@ -144,7 +154,7 @@ btn.addEventListener('click', () => {
     wrongAnswersList.innerHTML = "";
 
     if (questions.length === 0) {
-        questionField.innerText = "Quiz DONE!";
+        questionField.innerText = "Quiz Done!";
         btn.style.display = 'none';
         printScore();
 
