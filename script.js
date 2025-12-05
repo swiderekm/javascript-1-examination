@@ -1,38 +1,40 @@
 const questionField = document.querySelector('#question');
-const btn = document.querySelector('button');
+const nextBtn = document.querySelector('button#start');
+const modeBtn = document.querySelector('button#color-mode');
 const scoreOutput = document.querySelector('.score');
 const wrongAnswersList = document.querySelector('.wrong-answers');
+const questionDisplay = document.querySelector('#out-of');
 
 const questions = [
     {
         type: 'trueOrFalse',
         text: 'Vatten kokar vid 100°C vid normalt lufttryck.',
-        choices: ['true', 'false'],
-        correct: 'true',
+        choices: ['Sant', 'Falskt'],
+        correct: 'Sant',
     },
     {
         type: 'trueOrFalse',
         text: 'Den mänskliga hjärnan består av mer än 70% vatten.',
-        choices: ['true', 'false'],
-        correct: 'true',
+        choices: ['Sant', 'Falskt'],
+        correct: 'Sant',
     },
     {
         type: 'trueOrFalse',
         text: 'Australia ligger i norra hemisfären.',
-        choices: ['true', 'false'],
-        correct: 'false',
+        choices: ['Sant', 'Falskt'],
+        correct: 'Falskt',
     },
     {
         type: 'trueOrFalse',
         text: 'Fotosyntes sker bara under natten.',
-        choices: ['true', 'false'],
-        correct: 'false',
+        choices: ['Sant', 'Falskt'],
+        correct: 'Falskt',
     },
     {
         type: 'trueOrFalse',
         text: 'Vulkaner kan bildas där tektoniska plattor möts.',
-        choices: ['true', 'false'],
-        correct: 'true',
+        choices: ['Sant', 'Falskt'],
+        correct: 'Sant',
     },
     {
         type: 'multipleChoice',
@@ -97,6 +99,7 @@ const questions = [
 ];
 
 let points = [];
+const questionsOriginalLength = questions.length;
 let userAnswers = [];
 let askedQuestions = [];
 let currentQuestion = null;
@@ -105,7 +108,17 @@ let wrongAnswers = [];
 
 function printScore() {
     const total = points.reduce((sum, value) => sum + value, 0);
-    scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length}`;
+    
+    if (total < (askedQuestions.length * 0.5)) {
+        scoreOutput.style.color = 'red';
+        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Underkänd!</strong>`
+    } else if (total > (askedQuestions.length * 0.5) && total < (askedQuestions.length * 0.75)) {
+        scoreOutput.style.color = 'orange';
+        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Godkänd!</strong>`
+    } else if (total > (askedQuestions.length * 0.75)) {
+        scoreOutput.style.color = 'green';
+        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Godkänd med högsta betyg!</strong>`
+    };
 }
 
 function answerChecker(answer, question) {
@@ -132,8 +145,9 @@ function answerChecker(answer, question) {
     }
 }
 
-btn.addEventListener('click', () => {
-    btn.innerText = 'NEXT QUESTION';
+nextBtn.addEventListener('click', () => {
+    nextBtn.innerText = 'NEXT QUESTION';
+    questionDisplay.innerHTML = `${askedQuestions.length + 1}/${questionsOriginalLength}`;
 
     if (currentQuestion && currentQuestion.type === 'checkboxQues') {
         answerChecker(selectedCheckboxes, currentQuestion);
@@ -144,24 +158,26 @@ btn.addEventListener('click', () => {
     wrongAnswersList.innerHTML = "";
 
     if (questions.length === 0) {
-        questionField.innerText = "Quiz DONE!";
-        btn.style.display = 'none';
-        printScore();
+        questionField.innerText = "Quiz Done!";
+        nextBtn.style.display = 'none';
+        questionDisplay.style.display = 'none'
+;        printScore();
 
         wrongAnswers.forEach(item => {
             const wrong = document.createElement('div');
             wrong.style.borderTop = '1px solid black';
 
             wrong.innerHTML = `
-                <p><strong>Question:</strong> ${item.questionText}</p>
-                <p><strong>Your Answer:</strong><p class='green-p'>${item.userAnswer}</p></p>
-                <p><strong>Correct Answer:</strong><p class='red-p'>${item.correctAnswer}</p></p>
+                <p><strong>Fråga:</strong> ${item.questionText}</p>
+                <p><strong>Dina svar:</strong><p class='green-p'>${item.userAnswer}</p></p>
+                <p><strong>Korrekta svaret:</strong><p class='red-p'>${item.correctAnswer}</p></p>
             `;
 
             wrongAnswersList.append(wrong);
         });
         return;
     }
+
 
     let currentIndex = Math.floor(Math.random() * questions.length);
     currentQuestion = questions[currentIndex];
@@ -175,15 +191,15 @@ btn.addEventListener('click', () => {
 
     if (currentQuestion.type === 'multipleChoice' || currentQuestion.type === 'trueOrFalse') {
         currentQuestion.choices.forEach(option => {
-            const answerBtn = document.createElement('button');
-            answerBtn.innerText = option;
+            const answerNextBtn = document.createElement('button');
+            answerNextBtn.innerText = option;
 
-            answerBtn.addEventListener('click', () => {
+            answerNextBtn.addEventListener('click', () => {
                 answerChecker(option, currentQuestion);
-                btn.click();
+                nextBtn.click();
             });
 
-            questionField.append(answerBtn);
+            questionField.append(answerNextBtn);
         });
     }
     else if (currentQuestion.type === 'checkboxQues') {
@@ -207,4 +223,26 @@ btn.addEventListener('click', () => {
             questionField.append(wrapper);
         });
     }
+});
+
+modeBtn.addEventListener('click', () => {
+    document.body.classList.toggle("darkMode");
+    let allBtn = document.querySelectorAll('button');
+    allBtn.forEach(element => {
+        element.classList.toggle('btnDarkMode');
+    })
+});
+
+const newBtnDetector = new MutationObserver(mutations => {
+    mutations.forEach(m => {
+        m.addedNodes.forEach(node => {
+            if (node.tagName === "BUTTON" &&
+                document.body.classList.contains("darkMode")) {
+                node.classList.add("btnDarkMode");
+            }
+        });
+    });
+});
+newBtnDetector.observe(document.body, {
+    childList: true, subtree: true 
 });
