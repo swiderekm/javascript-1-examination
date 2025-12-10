@@ -96,15 +96,42 @@ const questions = [
         choices: ['Syre', 'Vatten', 'Guld', 'Magnesium'],
         correct: ['Syre', 'Guld', 'Magnesium']
     },
+    // {
+    //     type: 'checkboxQues',
+    //     text: 'test extra question',
+    //     choices: ['opt1', 'opt2', 'opt3'],
+    //     correct: ['opt1', 'opt3']
+    // }
 ];
 
-let points = [];
 const questionsOriginalLength = questions.length;
+let points = [];
 let userAnswers = [];
 let askedQuestions = [];
 let currentQuestion = null;
 let selectedCheckboxes = [];
 let wrongAnswers = [];
+
+modeBtn.addEventListener('click', () => {
+    document.body.classList.toggle("darkMode");
+    let allBtn = document.querySelectorAll('button');
+    allBtn.forEach(element => {
+        element.classList.toggle('btnDarkMode');
+    })
+});
+
+const newBtnDetector = new MutationObserver(mutations => {
+    mutations.forEach(element => {
+        element.addedNodes.forEach(node => {
+            if (node.tagName === "BUTTON" &&
+                document.body.classList.contains("darkMode")) {
+                node.classList.add("btnDarkMode");
+            }
+        });
+    });
+});
+
+newBtnDetector.observe(document.body, {childList: true, subtree: true });
 
 function printScore() {
     const total = points.reduce((sum, value) => sum + value, 0);
@@ -223,26 +250,4 @@ nextBtn.addEventListener('click', () => {
             questionField.append(wrapper);
         });
     }
-});
-
-modeBtn.addEventListener('click', () => {
-    document.body.classList.toggle("darkMode");
-    let allBtn = document.querySelectorAll('button');
-    allBtn.forEach(element => {
-        element.classList.toggle('btnDarkMode');
-    })
-});
-
-const newBtnDetector = new MutationObserver(mutations => {
-    mutations.forEach(m => {
-        m.addedNodes.forEach(node => {
-            if (node.tagName === "BUTTON" &&
-                document.body.classList.contains("darkMode")) {
-                node.classList.add("btnDarkMode");
-            }
-        });
-    });
-});
-newBtnDetector.observe(document.body, {
-    childList: true, subtree: true 
 });
