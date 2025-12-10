@@ -115,6 +115,13 @@ let wrongAnswers = [];
 modeBtn.addEventListener('click', () => {
     document.body.classList.toggle("darkMode");
     let allBtn = document.querySelectorAll('button');
+
+    if (document.body.classList.contains('darkMode')) {
+        modeBtn.innerHTML = 'LIGHT MODE';
+    } else {
+      modeBtn.innerHTML = 'DARK MODE';  
+    }
+    
     allBtn.forEach(element => {
         element.classList.toggle('btnDarkMode');
     })
@@ -136,13 +143,18 @@ newBtnDetector.observe(document.body, {childList: true, subtree: true });
 function printScore() {
     const total = points.reduce((sum, value) => sum + value, 0);
     
-    if (total < (askedQuestions.length * 0.5)) {
+    if (total < (askedQuestions.length * 0.5)) 
+    {
         scoreOutput.style.color = 'red';
         scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Underkänd!</strong>`
-    } else if (total > (askedQuestions.length * 0.5) && total < (askedQuestions.length * 0.75)) {
+    } 
+    else if (total >= (askedQuestions.length * 0.5) && total <= (askedQuestions.length * 0.75)) 
+    {
         scoreOutput.style.color = 'orange';
         scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Godkänd!</strong>`
-    } else if (total > (askedQuestions.length * 0.75)) {
+    } 
+    else if (total > (askedQuestions.length * 0.75)) 
+    {
         scoreOutput.style.color = 'green';
         scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Godkänd med högsta betyg!</strong>`
     };
@@ -182,7 +194,6 @@ nextBtn.addEventListener('click', () => {
 
     questionField.innerHTML = "";
     selectedCheckboxes = [];
-    wrongAnswersList.innerHTML = "";
 
     if (questions.length === 0) {
         questionField.innerText = "Quiz Done!";
