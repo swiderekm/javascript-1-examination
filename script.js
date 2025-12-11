@@ -86,7 +86,7 @@ const questions = [
     },
     {
         type: 'checkboxQues',
-        text: 'Vilka länder ingår i Norden?',
+        text: 'Vilka länder ingår i Norden av Europa?',
         choices: ['Sverige', 'Tyskland', 'Norge', 'Danmark'],
         correct: ['Sverige', 'Norge', 'Danmark']
     },
@@ -106,7 +106,6 @@ const questions = [
 
 const questionsOriginalLength = questions.length;
 let points = [];
-let userAnswers = [];
 let askedQuestions = [];
 let currentQuestion = null;
 let selectedCheckboxes = [];
@@ -173,7 +172,6 @@ function answerChecker(answer, question) {
     }
 
     points.push(isCorrect ? 1 : 0);
-    userAnswers.push(answer);
     
     if (!isCorrect) {
         wrongAnswers.push({
@@ -216,9 +214,8 @@ nextBtn.addEventListener('click', () => {
         return;
     }
 
-
     let currentIndex = Math.floor(Math.random() * questions.length);
-    currentQuestion = questions[currentIndex];
+    currentQuestion =  questions[currentIndex];
 
     askedQuestions.push(currentQuestion);
     questions.splice(currentIndex, 1);
@@ -239,8 +236,7 @@ nextBtn.addEventListener('click', () => {
 
             questionField.append(answerNextBtn);
         });
-    }
-    else if (currentQuestion.type === 'checkboxQues') {
+    } else if (currentQuestion.type === 'checkboxQues')  {
         currentQuestion.choices.forEach(option => {
             const checkbox = document.createElement('input');
             checkbox.type = "checkbox";
