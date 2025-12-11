@@ -8,101 +8,96 @@ const questionDisplay = document.querySelector('#out-of');
 const questions = [
     {
         type: 'trueOrFalse',
-        text: 'Vatten kokar vid 100°C vid normalt lufttryck.',
-        choices: ['Sant', 'Falskt'],
-        correct: 'Sant',
+        text: 'Woda wrze w temperaturze 100°C przy normalnym ciśnieniu atmosferycznym.',
+        choices: ['Prawda', 'Fałsz'],
+        correct: 'Prawda',
     },
     {
         type: 'trueOrFalse',
-        text: 'Den mänskliga hjärnan består av mer än 70% vatten.',
-        choices: ['Sant', 'Falskt'],
-        correct: 'Sant',
+        text: 'Ludzki mózg składa się w ponad 70% z wody.',
+        choices: ['Prawda', 'Fałsz'],
+        correct: 'Prawda',
     },
     {
         type: 'trueOrFalse',
-        text: 'Australia ligger i norra hemisfären.',
-        choices: ['Sant', 'Falskt'],
-        correct: 'Falskt',
+        text: 'Australia leży na półkuli północnej.',
+        choices: ['Prawda', 'Fałsz'],
+        correct: 'Fałsz',
     },
     {
         type: 'trueOrFalse',
-        text: 'Fotosyntes sker bara under natten.',
-        choices: ['Sant', 'Falskt'],
-        correct: 'Falskt',
+        text: 'Fotosynteza zachodzi tylko w nocy.',
+        choices: ['Prawda', 'Fałsz'],
+        correct: 'Fałsz',
     },
     {
         type: 'trueOrFalse',
-        text: 'Vulkaner kan bildas där tektoniska plattor möts.',
-        choices: ['Sant', 'Falskt'],
-        correct: 'Sant',
+        text: 'Wulkany mogą powstawać w miejscach styku płyt tektonicznych.',
+        choices: ['Prawda', 'Fałsz'],
+        correct: 'Prawda',
     },
     {
         type: 'multipleChoice',
-        text: 'Vilket är världens största hav?',
-        choices: ['Atlanten', 'Indiska oceanen', 'Stilla havet', 'Norra ishavet'],
-        correct: 'Stilla havet',
+        text: 'Który ocean jest największy na świecie?',
+        choices: ['Ocean Atlantycki', 'Ocean Indyjski', 'Ocean Spokojny (Pacyfik)', 'Ocean Arktyczny'],
+        correct: 'Ocean Spokojny (Pacyfik)',
     },
     {
         type: 'multipleChoice',
-        text: 'Vilket språk har flest modersmålstalare?',
-        choices: ['Engelska', 'Mandarin', 'Hindi', 'Spanska'],
-        correct: 'Mandarin',
+        text: 'Który język ma najwięcej rodzimych użytkowników?',
+        choices: ['Angielski', 'Mandaryński', 'Hindi', 'Hiszpański'],
+        correct: 'Mandaryński',
     },
     {
         type: 'multipleChoice',
-        text: 'Vad kallas läran om stjärnor och rymden?',
-        choices: ['Biologi', 'Geologi', 'Astronomi', 'Ekologi'],
-        correct: 'Astronomi',
+        text: 'Jak nazywa się nauka o gwiazdach i kosmosie?',
+        choices: ['Biologia', 'Geologia', 'Astronomia', 'Ekologia'],
+        correct: 'Astronomia',
     },
     {
         type: 'multipleChoice',
-        text: 'Vilket av följande djur är en reptil?',
-        choices: ['Groda', 'Sköldpadda', 'Salamander', 'Haj'],
-        correct: 'Sköldpadda',
+        text: 'Które z poniższych zwierząt jest gadem?',
+        choices: ['Żaba', 'Żółw', 'Salamandra', 'Rekin'],
+        correct: 'Żółw',
     },
     {
         type: 'multipleChoice',
-        text: 'Vilket ämne i luften är vi mest beroende av för att kunna andas?',
-        choices: ['Koldioxid', 'Syre', 'Helium', 'Kväve'],
-        correct: 'Syre',
+        text: 'Którego składnika powietrza najbardziej potrzebujemy do oddychania?',
+        choices: ['Dwutlenek węgla', 'Tlen', 'Hel', 'Azot'],
+        correct: 'Tlen',
     },
     {
         type: 'checkboxQues',
-        text: 'Vilka av följande är kontinenter?',
-        choices: ['Europa', 'Asien', 'Arktis', 'Afrika'],
-        correct: ['Europa', 'Asien', 'Afrika'],
+        text: 'Które z poniższych są kontynentami?',
+        choices: ['Europa', 'Azja', 'Arktyka', 'Afryka'],
+        correct: ['Europa', 'Azja', 'Afryka'],
     },
     {
         type: 'checkboxQues',
-        text: 'Vilka enheter är mått på längd?',
-        choices: ['Meter', 'Liter', 'Centimeter', 'Kelvin'],
-        correct: ['Meter', 'Centimeter'],
+        text: 'Które jednostki są miarami długości?',
+        choices: ['Metr', 'Litr', 'Centymetr', 'Kelwin'],
+        correct: ['Metr', 'Centymetr'],
     },
     {
         type: 'checkboxQues',
-        text: 'Vilka av dessa är webbläsare?',
+        text: 'Które z poniższych to przeglądarki internetowe?',
         choices: ['Google Chrome', 'Safari', 'Android', 'Firefox'],
         correct: ['Google Chrome', 'Safari', 'Firefox']
     },
     {
         type: 'checkboxQues',
-        text: 'Vilka länder ingår i Norden av Europa?',
-        choices: ['Sverige', 'Tyskland', 'Norge', 'Danmark'],
-        correct: ['Sverige', 'Norge', 'Danmark']
+        text: 'Które kraje należą do krajów nordyckich w Europie?',
+        choices: ['Szwecja', 'Niemcy', 'Norwegia', 'Dania'],
+        correct: ['Szwecja', 'Norwegia', 'Dania']
     },
     {
         type: 'checkboxQues',
-        text: 'Vilka av följande är grundämnen?',
-        choices: ['Syre', 'Vatten', 'Guld', 'Magnesium'],
-        correct: ['Syre', 'Guld', 'Magnesium']
+        text: 'Które z poniższych są pierwiastkami chemicznymi?',
+        choices: ['Tlen', 'Woda', 'Złoto', 'Magnez'],
+        correct: ['Tlen', 'Złoto', 'Magnez']
     },
-    // {
-    //     type: 'checkboxQues',
-    //     text: 'test extra question',
-    //     choices: ['opt1', 'opt2', 'opt3'],
-    //     correct: ['opt1', 'opt3']
-    // }
 ];
+
 
 const questionsOriginalLength = questions.length;
 let points = [];
@@ -116,9 +111,9 @@ modeBtn.addEventListener('click', () => {
     let allBtn = document.querySelectorAll('button');
 
     if (document.body.classList.contains('darkMode')) {
-        modeBtn.innerHTML = 'LIGHT MODE';
+        modeBtn.innerHTML = 'TRYB JASNY';
     } else {
-      modeBtn.innerHTML = 'DARK MODE';  
+      modeBtn.innerHTML = 'TRYB CIEMNY';  
     }
     
     allBtn.forEach(element => {
@@ -145,17 +140,17 @@ function printScore() {
     if (total < (askedQuestions.length * 0.5)) 
     {
         scoreOutput.style.color = 'red';
-        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Underkänd!</strong>`
+        scoreOutput.innerHTML = `PUNKTY: ${total}/${askedQuestions.length} <br><strong>Zawalony!</strong>`
     } 
     else if (total >= (askedQuestions.length * 0.5) && total <= (askedQuestions.length * 0.75)) 
     {
         scoreOutput.style.color = 'orange';
-        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Godkänd!</strong>`
+        scoreOutput.innerHTML = `PUNKTY: ${total}/${askedQuestions.length} <br><strong>Zaliczony!</strong>`
     } 
     else if (total > (askedQuestions.length * 0.75)) 
     {
         scoreOutput.style.color = 'green';
-        scoreOutput.innerHTML = `POINTS: ${total}/${askedQuestions.length} <br><strong>Godkänd med högsta betyg!</strong>`
+        scoreOutput.innerHTML = `PUNKTY: ${total}/${askedQuestions.length} <br><strong>Zaliczony z wyróżnieniem!</strong>`
     };
 }
 
@@ -183,7 +178,7 @@ function answerChecker(answer, question) {
 }
 
 nextBtn.addEventListener('click', () => {
-    nextBtn.innerText = 'NEXT QUESTION';
+    nextBtn.innerText = 'NASTĘPNE PYTANIE';
     questionDisplay.innerHTML = `${askedQuestions.length + 1}/${questionsOriginalLength}`;
 
     if (currentQuestion && currentQuestion.type === 'checkboxQues') {
@@ -194,7 +189,7 @@ nextBtn.addEventListener('click', () => {
     selectedCheckboxes = [];
 
     if (questions.length === 0) {
-        questionField.innerText = "Quiz Done!";
+        questionField.innerText = "Quiz Zakończony!";
         nextBtn.style.display = 'none';
         questionDisplay.style.display = 'none'
 ;        printScore();
@@ -204,9 +199,9 @@ nextBtn.addEventListener('click', () => {
             wrong.style.borderTop = '1px solid black';
 
             wrong.innerHTML = `
-                <p><strong>Fråga:</strong> ${item.questionText}</p>
-                <p><strong>Dina svar:</strong><p class='green-p'>${item.userAnswer}</p></p>
-                <p><strong>Korrekta svaret:</strong><p class='red-p'>${item.correctAnswer}</p></p>
+                <p><strong>Pytanie:</strong> ${item.questionText}</p>
+                <p><strong>Twoje odpowiedzi:</strong><p class='green-p'>${item.userAnswer}</p></p>
+                <p><strong>Poprawne odpowiedzi:</strong><p class='red-p'>${item.correctAnswer}</p></p>
             `;
 
             wrongAnswersList.append(wrong);
