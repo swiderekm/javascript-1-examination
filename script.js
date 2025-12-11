@@ -214,9 +214,8 @@ nextBtn.addEventListener('click', () => {
         return;
     }
 
-
     let currentIndex = Math.floor(Math.random() * questions.length);
-    currentQuestion = questions[currentIndex];
+    currentQuestion =  questions[currentIndex];
 
     askedQuestions.push(currentQuestion);
     questions.splice(currentIndex, 1);
@@ -237,8 +236,7 @@ nextBtn.addEventListener('click', () => {
 
             questionField.append(answerNextBtn);
         });
-    }
-    else if (currentQuestion.type === 'checkboxQues') {
+    } else if (currentQuestion.type === 'checkboxQues')  {
         currentQuestion.choices.forEach(option => {
             const checkbox = document.createElement('input');
             checkbox.type = "checkbox";
