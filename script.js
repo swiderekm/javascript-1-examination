@@ -196,8 +196,8 @@ nextBtn.addEventListener('click', () => {
     if (questions.length === 0) {
         questionField.innerText = "Quiz Done!";
         nextBtn.style.display = 'none';
-        questionDisplay.style.display = 'none'
-;        printScore();
+        questionDisplay.style.display = 'none';        
+        printScore();
 
         wrongAnswers.forEach(item => {
             const wrong = document.createElement('div');
