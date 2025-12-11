@@ -86,7 +86,7 @@ const questions = [
     },
     {
         type: 'checkboxQues',
-        text: 'Vilka länder ingår i Norden?',
+        text: 'Vilka länder ingår i Norden av Europa?',
         choices: ['Sverige', 'Tyskland', 'Norge', 'Danmark'],
         correct: ['Sverige', 'Norge', 'Danmark']
     },
@@ -106,7 +106,6 @@ const questions = [
 
 const questionsOriginalLength = questions.length;
 let points = [];
-let userAnswers = [];
 let askedQuestions = [];
 let currentQuestion = null;
 let selectedCheckboxes = [];
@@ -173,7 +172,6 @@ function answerChecker(answer, question) {
     }
 
     points.push(isCorrect ? 1 : 0);
-    userAnswers.push(answer);
     
     if (!isCorrect) {
         wrongAnswers.push({
